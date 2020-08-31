@@ -1,2 +1,2 @@
 # gizmo-paper
-Software and analysis files for the GIZMO
+Software and analysis programs for the GIZMO
