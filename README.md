@@ -9,7 +9,7 @@ Vasily Goncharov3, Daniel Flickinger3, Karel Svoboda3, Mikhail Drobizhev1, Thoma
 3Janelia Research Campus, 19700 Helix Dr, Ashburn, VA 20147, USA\
 4Current address: Advanced Engineering Laboratory, Woods Hole Oceanographic Institution, 86 Water St, Woods Hole, MA 02543, USA
 
-`NorthernLights.m` is the main instrument software. Needs a legacy version of ScanImage (available for purchase from to run properly [Vidrio Technologies](https://vidriotechnologies.com/)).
+`NorthernLights.m` is the main instrument software. Needs a legacy version of ScanImage to run properly (available for purchase from [Vidrio Technologies](https://vidriotechnologies.com/)).
 Note that it also requires `tspsearch.m` which can be downloaded from [MATLAB File Exchange](https://www.mathworks.com/matlabcentral/fileexchange/71226-tspsearch).
 
 `NorthernLightsGui.m` is software to setup the GUI.
