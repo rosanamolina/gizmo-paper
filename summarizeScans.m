@@ -2,17 +2,17 @@ function summarizeScans(plotFigures, saveData, evolutionRoundSummaryLocation, pl
 %{
 summarizeScans.m Summarizes the '.dat' scan data in the working directory
 and finds the top ~5 brightest colonies.
-Inputs: 
+Inputs:
     plotFigures : Boolean of whether or not to plot figures (if you do
         not plot figures then they will not be saved)
     saveData : Boolean of whether or not to save data (figures, etc.)
-    evolutionRoundSummaryLocation : (optional) filename (including path) of
+    evolutionRoundSummaryLocation : (optional) string, filename (including path) of
         where to append the plate results. It is a .csv to contain
         results from all the plates in one round of evolution.
-    plateName : (optional) Name of the scanned plate. If this is not
+    plateName : (optional) string, Name of the scanned plate. If this is not
         provided, the plateName will be the grandparent folder name
-    plateDirectory : (optional) Folder name (including path) of where to
-        save data specific to this plate. 
+    plateDirectory : (optional) string, Folder name (including path) of where to
+        save data specific to this plate.
 Outputs:
     None.
 Plots the following figures:
@@ -20,17 +20,17 @@ Plots the following figures:
     2. Histogram of the max intensities of the plate
     3. Scatter plot of the max intensities of the plate
 Saves the following files:
-    1. .png files of above gfigures (if plotted)
+    1. .png files of above figures (if plotted)
     2. .mat file containing structure with reduced scans and max values for
        each colony
     3. .txt file containing plate summary
-    4. (if provided evolutionRoundSummaryLocation) .csv file meant to 
+    4. (if provided evolutionRoundSummaryLocation) .csv file meant to
        contain results from all the plates in one round of evolution.
 %}
 
-% Set the number to reduce the scan data by (to minimize storage size and 
+% Set the number to reduce the scan data by (to minimize storage size and
 % for viewing purposes only!)
-N=500; 
+N=500;
 
 % Get all .dat files in the working directory
 scanDirectory = pwd;
@@ -204,7 +204,7 @@ end
         % Find either the top 0.5% colonies or 5 colonies, whichever is greater
         nTopColonies = max([ceil(0.005*nColonies), 5]);
         % Sort the max values in descending order
-        sortedMax = sortrows([1:nColonies; [analyzedScans.Max]]', 2, 'descend');
+        sortedMax = sortrows([1:nColonies; [analyzedScans.Max]]', -2);%, 'descend');
         % Split into two vectors containing the ids and max values of top colonies
         topIds = sortedMax(1:nTopColonies, 1);
         topMax = round(sortedMax(1:nTopColonies, 2));
@@ -318,5 +318,6 @@ end
             [sprintf('% d, ', topIds(1:end-1)), sprintf('% d', topIds(end))]);
         fclose(fid);
     end
+
 
 end

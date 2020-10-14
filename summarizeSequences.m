@@ -77,7 +77,7 @@ end
 cellForExport = [createSummaryCell(analyzedSeqs); createSampleCell(analyzedSeqs)];
 
 % Export results to csv file.
-write2csv(cellForExport,csvFilename);
+cell2csv(cellForExport,csvFilename);
 
 
 % Helper Functions
@@ -489,6 +489,29 @@ write2csv(cellForExport,csvFilename);
             parentsCell = [{'Parents'}; cell(6,1)]; % placeholder for Parents
             summaryCell = [summaryCell(:,1), labelCell, parentsCell, summaryCell(:,2:end)];
         end
+    end
+
+
+    function cell2csv(cellArray,csvFilename)
+        % Writes a cell array to a csv file.
+        
+        %Check that .csv is appended to filename
+        if ~strcmp(csvFilename(end-3:end),'.csv')
+            fid = fopen([csvFilename '.csv'],'wt');
+        else
+            fid = fopen(csvFilename,'wt');
+        end
+        
+        %Loop through each row of the cell array:
+        for i = 1:size(cellArray,1)
+            %Write each element of the row with a comma between them
+            fprintf(fid,'"%s",', cellArray{i,1:end-1});
+            %For the last element in the row, add a new line instead of a comma
+            fprintf(fid,'"%s"\n', cellArray{i,end});
+        end
+        
+        fclose(fid);
+        
     end
 
 
